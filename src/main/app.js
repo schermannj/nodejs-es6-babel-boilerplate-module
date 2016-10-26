@@ -31,3 +31,6 @@ configureErrorHandler(app);
 const server = http.createServer(app);
 
 initServer(server);
+
+
+export default app;
