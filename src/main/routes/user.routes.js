@@ -1,15 +1,23 @@
 import {ROUTES, AUTH_TOKEN_VAR_NAME, ERROR_MSG} from '../config/constants';
 import {User} from '../models/user.model';
 import {UserToken} from '../models/user-token.model';
-import {serverError, api} from './common.handlers';
+import {serverError} from '../helpers/error-handler.helper';
+import {api, secureApi} from '../helpers/api-builder.helper';
 import uuid from 'uuid';
 
 export default function initUserRoutes(app) {
 
     app.post(api(ROUTES.login), login);
     app.post(api(ROUTES.createUser), createUser);
-    app.get(api(ROUTES.logout), logout);
     app.get(api(ROUTES.getUserByToken), getUserByToken);
+
+    app.get(secureApi(ROUTES.logout), logout);
+    app.get(api('/check'), (req, res) => {
+        res.send({success: true, secure: false});
+    });
+    app.get(secureApi('/check'), (req, res) => {
+       res.send({success: true, secure: false});
+    });
 
 
     /**

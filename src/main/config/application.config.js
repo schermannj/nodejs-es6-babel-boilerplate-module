@@ -3,11 +3,11 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import {checkNodeEnv} from '../helpers/node-env.helper';
 
 export default function initApplication(app) {
-    process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'DEV';
+    checkNodeEnv();
 
-    setOwnIp();
     app.use(morgan('dev'));
     app.use(cookieParser());
     app.use(bodyParser.urlencoded({

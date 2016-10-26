@@ -1,4 +1,4 @@
-import {serverError} from '../routes/common.handlers';
+import {serverError} from '../helpers/error-handler.helper';
 
 export default function configureErrorHandler(app) {
     app.use(serverError);
