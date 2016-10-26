@@ -8,6 +8,8 @@ const assert = chai.assert;
 
 chai.use(chaiHttp);
 
+// TODO: check 'mockgoose'
+
 describe('User', () => {
     beforeEach(beforeEachFunction);
 
